@@ -1,1 +1,1 @@
-python distributions.py
+cd "C:\Users\kwoky\Documents\GitHub\statistical_distributions" & python distributions.py
