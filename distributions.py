@@ -34,8 +34,10 @@ def binomial():
     print("2) P(X = k)")
     print("3) P(X > k)")
     print("4) P(X <= x) >= p'")
+    print("5) E(X)")
+    print("6) V(X)")
     
-    choice = get_choice(4)
+    choice = get_choice(6)
     if choice == 1:
         while True:
             try:
@@ -73,6 +75,26 @@ def binomial():
                 n, p, pp = get_values(int, float, float)
                 result = stats.binom.ppf(pp,n,p)
                 print("P(X < ", result, ") >= ", pp, sep="")
+                return result
+            except Exception as e:
+                print(e)
+    if choice == 5:
+        while True:
+            try:
+                print("Enter n and p:")
+                n, p= get_values(int, float)
+                result = n*p
+                print("E(X) = np = ", result, sep="")
+                return result
+            except Exception as e:
+                print(e)
+    if choice == 6:
+        while True:
+            try:
+                print("Enter n and p:")
+                n, p= get_values(int, float)
+                result = n*p*(1-p)
+                print("V(X) = np(1-p) = ", result, sep="")
                 return result
             except Exception as e:
                 print(e)
