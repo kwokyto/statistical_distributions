@@ -30,14 +30,11 @@ def get_values(*args):
 def binomial():
     print("X ~ B(n, p) where\n\tX = number of successes\n\tn = number of trials\n\tp = probability of success")
     print("Select the probability:")
-    print("1) P(X <= k)")
-    print("2) P(X = k)")
-    print("3) P(X > k)")
-    print("4) P(X <= x) >= p'")
-    print("5) E(X)")
-    print("6) V(X)")
+    print("1) P(X <= k) or P(X = k) or P(X > k)")
+    print("2) P(X <= x) >= p'")
+    print("3) E(X) or V(X)")
     
-    choice = get_choice(6)
+    choice = get_choice(3)
     if choice == 1:
         while True:
             try:
@@ -45,30 +42,14 @@ def binomial():
                 n, p, k = get_values(int, float, int)
                 result = stats.binom.cdf(k,n,p)
                 print("P(X <= ", k, ") = ", result, sep="")
-                return result
-            except Exception as e:
-                print(e)
-    if choice == 2:
-        while True:
-            try:
-                print("Enter n, p, and k:")
-                n, p, k = get_values(int, float, int)
                 result = stats.binom.pmf(k,n,p)
                 print("P(X = ", k, ") = ", result, sep="")
-                return result
-            except Exception as e:
-                print(e)
-    if choice == 3:
-        while True:
-            try:
-                print("Enter n, p, and k:")
-                n, p, k = get_values(int, float, int)
                 result = 1 -stats.binom.cdf(k,n,p)
                 print("P(X > ", k, ") = ", result, sep="")
                 return result
             except Exception as e:
                 print(e)
-    if choice == 4:
+    if choice == 2:
         while True:
             try:
                 print("Enter n, p, and p':")
@@ -78,21 +59,13 @@ def binomial():
                 return result
             except Exception as e:
                 print(e)
-    if choice == 5:
+    if choice == 3:
         while True:
             try:
                 print("Enter n and p:")
                 n, p= get_values(int, float)
                 result = n*p
                 print("E(X) = np = ", result, sep="")
-                return result
-            except Exception as e:
-                print(e)
-    if choice == 6:
-        while True:
-            try:
-                print("Enter n and p:")
-                n, p= get_values(int, float)
                 result = n*p*(1-p)
                 print("V(X) = np(1-p) = ", result, sep="")
                 return result
