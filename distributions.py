@@ -178,8 +178,9 @@ def poisson():
     print("2) P(X = k)")
     print("3) P(X > k)")
     print("4) P(X <= x) >= p'")
+    print("5) E(X) or V(X)")
     
-    choice = get_choice(4)
+    choice = get_choice(5)
     if choice == 1:
         while True:
             try:
@@ -218,6 +219,15 @@ def poisson():
                 result = stats.poisson.ppf(pp,avg)
                 print("P(X <= ", result, ") >= ", pp, sep="")
                 return result
+            except Exception as e:
+                print(e)
+    if choice == 5:
+        while True:
+            try:
+                print("Enter avg:")
+                avg = get_values(float)[0]
+                print("E(X) = V(X) = ", avg, sep="")
+                return avg
             except Exception as e:
                 print(e)
 
