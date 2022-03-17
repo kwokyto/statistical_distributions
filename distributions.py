@@ -162,12 +162,10 @@ def poisson():
 def exponential():
     print("X ~ Exp(1/avg) where\n\tavg = E(X)")
     print("Select the probability:")
-    print("1) P(X <= k)")
-    print("2) P(X = k)")
-    print("3) P(X > k)")
-    print("4) P(X <= x) = p'")
+    print("1) P(X <= k) or P(X = k) or P(X > k)")
+    print("2) P(X <= x) = p'")
     
-    choice = get_choice(4)
+    choice = get_choice(2)
     if choice == 1:
         while True:
             try:
@@ -175,30 +173,14 @@ def exponential():
                 avg, k = get_values(float, int)
                 result = stats.expon.cdf(k,0,avg)
                 print("P(X <= ", k, ") = ", result, sep="")
-                return result
+                result = stats.expon.pdf(k,0,avg)
+                print("P(X = ", k, ") = ", result, sep="")
+                result = 1 - stats.expon.cdf(k,0,avg)
+                print("P(X > ", k, ") = ", result, sep="")
+                return
             except Exception as e:
                 print(e)
     if choice == 2:
-        while True:
-            try:
-                print("Enter avg and k:")
-                avg, k = get_values(float, int)
-                result = stats.expon.pdf(k,0,avg)
-                print("P(X = ", k, ") = ", result, sep="")
-                return result
-            except Exception as e:
-                print(e)
-    if choice == 3:
-        while True:
-            try:
-                print("Enter avg and k:")
-                avg, k = get_values(float, int)
-                result = 1 - stats.expon.cdf(k,0,avg)
-                print("P(X > ", k, ") = ", result, sep="")
-                return result
-            except Exception as e:
-                print(e)
-    if choice == 4:
         while True:
             try:
                 print("Enter avg and p':")
