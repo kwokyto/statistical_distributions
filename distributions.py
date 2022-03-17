@@ -75,14 +75,11 @@ def binomial():
 def negative_binomial():
     print("X ~ NB(n, p) where\n\tX = number of trials\n\tn = number of successes\n\tp = probability of success")
     print("Select the probability:")
-    print("1) P(X <= k)")
-    print("2) P(X = k)")
-    print("3) P(X > k)")
-    print("4) P(X <= x) >= p'")
-    print("5) E(X)")
-    print("6) V(X)")
+    print("1) P(X <= k) or P(X = k) or P(X > k)")
+    print("2) P(X <= x) >= p'")
+    print("3) E(X) or V(X)")
     
-    choice = get_choice(6)
+    choice = get_choice(3)
     if choice == 1:
         while True:
             try:
@@ -90,57 +87,33 @@ def negative_binomial():
                 n, p, k = get_values(int, float, int)
                 result = stats.binom.cdf(k-n,n,p)
                 print("P(X <= ", k, ") = ", result, sep="")
-                return result
+                result = stats.binom.pmf(k-n,n,p)
+                print("P(X = ", k, ") = ", result, sep="")
+                result = 1 -stats.binom.cdf(k-n,n,p)
+                print("P(X > ", k, ") = ", result, sep="")
+                return
             except Exception as e:
                 print(e)
     if choice == 2:
-        while True:
-            try:
-                print("Enter n, p, and k:")
-                n, p, k = get_values(int, float, int)
-                result = stats.binom.pmf(k-n,n,p)
-                print("P(X = ", k, ") = ", result, sep="")
-                return result
-            except Exception as e:
-                print(e)
-    if choice == 3:
-        while True:
-            try:
-                print("Enter n, p, and k:")
-                n, p, k = get_values(int, float, int)
-                result = 1 -stats.binom.cdf(k-n,n,p)
-                print("P(X > ", k, ") = ", result, sep="")
-                return result
-            except Exception as e:
-                print(e)
-    if choice == 4:
         while True:
             try:
                 print("Enter n, p, and p':")
                 n, p, pp = get_values(int, float, float)
                 result = stats.binom.ppf(pp,n,p) + n
                 print("P(X <= ", result, ") >= ", pp, sep="")
-                return result
+                return
             except Exception as e:
                 print(e)
-    if choice == 5:
+    if choice == 3:
         while True:
             try:
                 print("Enter n and p:")
                 n, p= get_values(int, float)
                 result = n/p
                 print("E(X) = np = ", result, sep="")
-                return result
-            except Exception as e:
-                print(e)
-    if choice == 6:
-        while True:
-            try:
-                print("Enter n and p:")
-                n, p= get_values(int, float)
                 result = n*(1-p)/(p**2)
                 print("V(X) = np(1-p) = ", result, sep="")
-                return result
+                return
             except Exception as e:
                 print(e)
 
