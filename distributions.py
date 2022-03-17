@@ -46,7 +46,7 @@ def binomial():
                 print("P(X = ", k, ") = ", result, sep="")
                 result = 1 -stats.binom.cdf(k,n,p)
                 print("P(X > ", k, ") = ", result, sep="")
-                return result
+                return
             except Exception as e:
                 print(e)
     if choice == 2:
@@ -56,7 +56,7 @@ def binomial():
                 n, p, pp = get_values(int, float, float)
                 result = stats.binom.ppf(pp,n,p)
                 print("P(X < ", result, ") >= ", pp, sep="")
-                return result
+                return
             except Exception as e:
                 print(e)
     if choice == 3:
@@ -68,7 +68,7 @@ def binomial():
                 print("E(X) = np = ", result, sep="")
                 result = n*p*(1-p)
                 print("V(X) = np(1-p) = ", result, sep="")
-                return result
+                return
             except Exception as e:
                 print(e)
 
