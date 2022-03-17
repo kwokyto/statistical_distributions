@@ -336,6 +336,19 @@ def F():
             except Exception as e:
                 print(e)
 
+def uniform():
+    print("X is uniformly distributed on the interval [a, b]")
+    while True:
+        try:
+            print("Enter a and b:")
+            a, b = get_values(float, float)
+            print("f(x) =", 1/(b-a))
+            print("E(X) =" (a+b)/2)
+            print("V(X) =", (b-a)**2/12)
+            return
+        except Exception as e:
+            print(e)
+
 while True:
     print("\nSelect the distribution:")
     print("\t1) Binomial --> number of successes in n trials")
@@ -346,10 +359,11 @@ while True:
     print("\t6) Chi-Square")
     print("\t7) t")
     print("\t8) F")
-    print("\t9) Exit")
+    print("\t9) Uniform Distribution")
+    print("\t10) Exit")
     
-    choice = get_choice(9)
-    if choice == 9:
+    choice = get_choice(10)
+    if choice == 10:
         break
-    functions = [None, binomial, negative_binomial, poisson, exponential, normal, chi_square, t, F]
+    functions = [None, binomial, negative_binomial, poisson, exponential, normal, chi_square, t, F, uniform]
     functions[choice]()
