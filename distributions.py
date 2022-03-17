@@ -237,13 +237,10 @@ def normal():
 def chi_square():
     print("X ~ chisq(n) where\n\tn = degrees of freedom")
     print("Select the probability:")
-    print("1) P(X <= k)")
-    print("2) P(X = k)")
-    print("3) P(X > k)")
-    print("4) P(X <= x) = p'")
-    print("5) P(X >= x) = p'")
+    print("1) P(X <= k) or P(X = k) or P(X > k)")
+    print("2) P(X <= x) = p' or P(X >= x) = p'")
     
-    choice = get_choice(4)
+    choice = get_choice(2)
     if choice == 1:
         while True:
             try:
@@ -251,47 +248,23 @@ def chi_square():
                 n, k = get_values(int, float)
                 result = stats.chi2.cdf(k,n)
                 print("P(X <= ", k, ") = ", result, sep="")
-                return result
+                result = stats.chi2.pmf(k,n)
+                print("P(X = ", k, ") = ", result, sep="")
+                result = 1 - stats.chi2.cdf(k,n)
+                print("P(X > ", k, ") = ", result, sep="")
+                return
             except Exception as e:
                 print(e)
     if choice == 2:
-        while True:
-            try:
-                print("Enter n and k:")
-                n, k = get_values(int, float)
-                result = stats.chi2.pmf(k,n)
-                print("P(X = ", k, ") = ", result, sep="")
-                return result
-            except Exception as e:
-                print(e)
-    if choice == 3:
-        while True:
-            try:
-                print("Enter n and k:")
-                n, k = get_values(int, float)
-                result = 1 - stats.chi2.cdf(k,n)
-                print("P(X > ", k, ") = ", result, sep="")
-                return result
-            except Exception as e:
-                print(e)
-    if choice == 4:
         while True:
             try:
                 print("Enter n and p':")
                 n, pp = get_values(int, float)
                 result = stats.chi2.ppf(pp,n)
                 print("P(X <= ", result, ") = ", pp, sep="")
-                return result
-            except Exception as e:
-                print(e)
-    if choice == 5:
-        while True:
-            try:
-                print("Enter n and p':")
-                n, pp = get_values(int, float)
                 result = stats.chi2.ppf(1-pp,n)
                 print("P(X >= ", result, ") = ", pp, sep="")
-                return result
+                return
             except Exception as e:
                 print(e)
 
