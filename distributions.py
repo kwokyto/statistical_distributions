@@ -187,20 +187,18 @@ def exponential():
                 avg, pp = get_values(float, float)
                 result = stats.expon.ppf(pp,0,avg)
                 print("P(X <= ", result, ") = ", pp, sep="")
-                return result
+                return
             except Exception as e:
                 print(e)
 
 def normal():
     print("X ~ N(mew, sigma^2) where\n\tmew = E(X)\n\tsigma^2 = V(X)")
     print("Select the probability:")
-    print("1) P(X <= k)")
-    print("2) P(X = k)")
-    print("3) P(X > k)")
-    print("4) P(X <= x) = p'")
-    print("5) P(Z >= z) = p'")
+    print("1) P(X <= k) or P(X = k) or P(X > k)")
+    print("2) P(X <= x) = p'")
+    print("3) P(Z >= z) = p'")
     
-    choice = get_choice(5)
+    choice = get_choice(3)
     if choice == 1:
         while True:
             try:
@@ -208,47 +206,31 @@ def normal():
                 e, sd, k = get_values(float, float, float)
                 result = stats.norm.cdf(k,e,sd)
                 print("P(X <= ", k, ") = ", result, sep="")
-                return result
+                result = stats.norm.pdf(k,e,sd)
+                print("P(X = ", k, ") = ", result, sep="")
+                result = 1 - stats.norm.cdf(k,e,sd)
+                print("P(X > ", k, ") = ", result, sep="")
+                return
             except Exception as e:
                 print(e)
     if choice == 2:
-        while True:
-            try:
-                print("Enter E(X), standard deviation, and k:")
-                e, sd, k = get_values(float, float, float)
-                result = stats.norm.pdf(k,e,sd)
-                print("P(X = ", k, ") = ", result, sep="")
-                return result
-            except Exception as e:
-                print(e)
-    if choice == 3:
-        while True:
-            try:
-                print("Enter E(X), standard deviation, and k:")
-                e, sd, k = get_values(float, float, float)
-                result = 1 - stats.norm.cdf(k,e,sd)
-                print("P(X > ", k, ") = ", result, sep="")
-                return result
-            except Exception as e:
-                print(e)
-    if choice == 4:
         while True:
             try:
                 print("Enter E(X), standard deviation, and p':")
                 e, sd, pp = get_values(float, float, float)
                 result = stats.norm.ppf(pp,e,sd)
                 print("P(X < ", result, ") = ", pp, sep="")
-                return result
+                return
             except Exception as e:
                 print(e)
-    if choice == 5:
+    if choice == 3:
         while True:
             try:
                 print("Enter p':")
                 pp = get_values(float)
                 result = stats.norm.ppf(pp,0,1)
                 print("P(Z >= ", result, ") = ", pp, sep="")
-                return result
+                return
             except Exception as e:
                 print(e)
 
