@@ -1,5 +1,16 @@
 from scipy import stats
 
+descriptions = ["\t1) Binomial --> number of successes in n trials",
+    "\t2) Negative Binomial --> number of trials to produce n successes",
+    "\t3) Poisson --> number of successes occurring in a time period",
+    "\t4) Exponential",
+    "\t5) Normal",
+    "\t6) Chi-Square",
+    "\t7) t",
+    "\t8) F",
+    "\t9) Uniform Distribution",
+    "\t10) Exit"]
+
 def get_choice(maximum):
     choice = 0
     while choice not in range(1, maximum+1):
@@ -343,7 +354,7 @@ def uniform():
             print("Enter a and b:")
             a, b = get_values(float, float)
             print("f(x) =", 1/(b-a))
-            print("E(X) =" (a+b)/2)
+            print("E(X) =", (a+b)/2)
             print("V(X) =", (b-a)**2/12)
             return
         except Exception as e:
@@ -351,19 +362,11 @@ def uniform():
 
 while True:
     print("\nSelect the distribution:")
-    print("\t1) Binomial --> number of successes in n trials")
-    print("\t2) Negative Binomial --> number of trials to produce n successes")
-    print("\t3) Poisson --> number of successes occurring in a time period")
-    print("\t4) Exponential")
-    print("\t5) Normal")
-    print("\t6) Chi-Square")
-    print("\t7) t")
-    print("\t8) F")
-    print("\t9) Uniform Distribution")
-    print("\t10) Exit")
+    for description in descriptions:
+        print(description)
     
-    choice = get_choice(10)
-    if choice == 10:
+    choice = get_choice(len(descriptions))
+    if choice == len(descriptions):
         break
     functions = [None, binomial, negative_binomial, poisson, exponential, normal, chi_square, t, F, uniform]
     functions[choice]()
