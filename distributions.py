@@ -141,7 +141,7 @@ def negative_binomial():
                 print(e)
 
 def poisson():
-    print("X ~ P(avg) where\n\tX = number of success occurring during a time interval\n\tavg = average number of successes in a time interval")
+    print("X ~ P(E(X)) where\n\tX = number of success occurring during a time interval\n\tE(X) = average number of successes in a time interval")
     print("Select the probability:")
     print("1) P(X <= k) or P(X = k) or P(X > k)")
     print("2) P(X <= x) >= p'")
@@ -151,13 +151,13 @@ def poisson():
     if choice == 1:
         while True:
             try:
-                print("Enter avg and k:")
-                avg, k = get_values(float, int)
-                result = stats.poisson.cdf(k,avg)
+                print("Enter E(X) and k:")
+                expectation, k = get_values(float, int)
+                result = stats.poisson.cdf(k,expectation)
                 print("P(X <= ", k, ") = ", result, sep="")
-                result = stats.poisson.pmf(k,avg)
+                result = stats.poisson.pmf(k,expectation)
                 print("P(X = ", k, ") = ", result, sep="")
-                result = 1 - stats.poisson.cdf(k,avg)
+                result = 1 - stats.poisson.cdf(k,expectation)
                 print("P(X > ", k, ") = ", result, sep="")
                 return
             except Exception as e:
@@ -165,9 +165,9 @@ def poisson():
     if choice == 2:
         while True:
             try:
-                print("Enter avg and p':")
-                avg, pp = get_values(float, float)
-                result = stats.poisson.ppf(pp,avg)
+                print("Enter E(X) and p':")
+                expectation, pp = get_values(float, float)
+                result = stats.poisson.ppf(pp,expectation)
                 print("P(X <= ", result, ") >= ", pp, sep="")
                 return result
             except Exception as e:
@@ -175,15 +175,15 @@ def poisson():
     if choice == 3:
         while True:
             try:
-                print("Enter avg:")
-                avg = get_values(float)[0]
-                print("E(X) = V(X) = ", avg, sep="")
-                return avg
+                print("Enter E(X):")
+                expectation = get_values(float)[0]
+                print("E(X) = V(X) = ", expectation, sep="")
+                return expectation
             except Exception as e:
                 print(e)
 
 def exponential():
-    print("X ~ Exp(1/avg) where\n\tavg = E(X)")
+    print("X ~ Exp(1/E(X)) where\n\tE(X) = E(X)")
     print("Select the probability:")
     print("1) P(X <= k) or P(X = k) or P(X > k)")
     print("2) P(X <= x) = p'")
@@ -193,13 +193,13 @@ def exponential():
     if choice == 1:
         while True:
             try:
-                print("Enter avg and k:")
-                avg, k = get_values(float, int)
-                result = stats.expon.cdf(k,0,avg)
+                print("Enter E(X) and k:")
+                expectation, k = get_values(float, int)
+                result = stats.expon.cdf(k,0,expectation)
                 print("P(X <= ", k, ") = ", result, sep="")
-                result = stats.expon.pdf(k,0,avg)
+                result = stats.expon.pdf(k,0,expectation)
                 print("P(X = ", k, ") = ", result, sep="")
-                result = 1 - stats.expon.cdf(k,0,avg)
+                result = 1 - stats.expon.cdf(k,0,expectation)
                 print("P(X > ", k, ") = ", result, sep="")
                 return
             except Exception as e:
@@ -207,9 +207,9 @@ def exponential():
     if choice == 2:
         while True:
             try:
-                print("Enter avg and p':")
-                avg, pp = get_values(float, float)
-                result = stats.expon.ppf(pp,0,avg)
+                print("Enter E(X) and p':")
+                expectation, pp = get_values(float, float)
+                result = stats.expon.ppf(pp,0,expectation)
                 print("P(X <= ", result, ") = ", pp, sep="")
                 return
             except Exception as e:
@@ -217,10 +217,10 @@ def exponential():
     if choice == 3:
         while True:
             try:
-                print("Enter avg:")
-                avg = get_values(float)[0]
-                print("E(X) = ", avg, sep="")
-                print("V(X) = E(X)**2 = ", avg**2, sep="")
+                print("Enter E(X):")
+                expectation = get_values(float)[0]
+                print("E(X) = ", expectation, sep="")
+                print("V(X) = E(X)**2 = ", expectation**2, sep="")
                 return result
             except Exception as e:
                 print(e)
