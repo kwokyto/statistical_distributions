@@ -187,8 +187,9 @@ def exponential():
     print("Select the probability:")
     print("1) P(X <= k) or P(X = k) or P(X > k)")
     print("2) P(X <= x) = p'")
+    print("3) E(X) or V(X)")
     
-    choice = get_choice(2)
+    choice = get_choice(3)
     if choice == 1:
         while True:
             try:
@@ -211,6 +212,18 @@ def exponential():
                 result = stats.expon.ppf(pp,0,avg)
                 print("P(X <= ", result, ") = ", pp, sep="")
                 return
+            except Exception as e:
+                print(e)
+    if choice == 3:
+        while True:
+            try:
+                print("Enter avg:")
+                avg = get_values(float)[0]
+                result = 1/avg
+                print("E(X) = 1/avg = ", result, sep="")
+                result = 1/(avg**2)
+                print("V(X) = 1/avg**2 = ", result, sep="")
+                return result
             except Exception as e:
                 print(e)
 
