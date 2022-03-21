@@ -96,11 +96,11 @@ def negative_binomial():
             try:
                 print("Enter n, p, and k:")
                 n, p, k = get_values(int, float, int)
-                result = stats.binom.cdf(k-n,n,p)
+                result = stats.nbinom.cdf(k-n,n,p)
                 print("P(X <= ", k, ") = ", result, sep="")
-                result = stats.binom.pmf(k-n,n,p)
+                result = stats.nbinom.pmf(k-n,n,p)
                 print("P(X = ", k, ") = ", result, sep="")
-                result = 1 -stats.binom.cdf(k-n,n,p)
+                result = 1 -stats.nbinom.cdf(k-n,n,p)
                 print("P(X > ", k, ") = ", result, sep="")
                 return
             except Exception as e:
