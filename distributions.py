@@ -219,10 +219,8 @@ def exponential():
             try:
                 print("Enter avg:")
                 avg = get_values(float)[0]
-                result = 1/avg
-                print("E(X) = 1/avg = ", result, sep="")
-                result = 1/(avg**2)
-                print("V(X) = 1/avg**2 = ", result, sep="")
+                print("E(X) = ", avg, sep="")
+                print("V(X) = E(X)**2 = ", avg**2, sep="")
                 return result
             except Exception as e:
                 print(e)
