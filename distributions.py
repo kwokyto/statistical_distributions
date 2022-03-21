@@ -1,3 +1,4 @@
+import sys
 from scipy import stats
 
 descriptions = ["\t1) Binomial --> number of successes in n trials",
@@ -11,12 +12,19 @@ descriptions = ["\t1) Binomial --> number of successes in n trials",
     "\t9) Uniform Distribution",
     "\t10) Exit"]
 
+def quit():
+    print("Exiting program...")
+    sys.exit()
+
 def get_choice(maximum):
     choice = 0
     while choice not in range(1, maximum+1):
         print("Input choice: ", end="")
         try:
-            choice = int(input())
+            choice = input()
+            if choice == "exit":
+                quit()
+            choice = int(choice)
         except Exception as e:
             print(e)
             choice = 0
@@ -26,6 +34,10 @@ def get_choice(maximum):
 def get_values(*args):
     while True:
         values = input().split()
+
+        if len(values) == 1 and values[0] == "exit":
+            quit()
+
         if len(values) != len(args):
             continue
 
