@@ -238,8 +238,9 @@ def normal():
     if choice == 1:
         while True:
             try:
-                print("Enter E(X), standard deviation, and k:")
-                e, sd, k = get_values(float, float, float)
+                print("Enter E(X), V(X), and k:")
+                e, var, k = get_values(float, float, float)
+                sd = sqrt(var)
                 result = stats.norm.cdf(k,e,sd)
                 print("P(X <= ", k, ") = ", result, sep="")
                 result = stats.norm.pdf(k,e,sd)
@@ -252,8 +253,9 @@ def normal():
     if choice == 2:
         while True:
             try:
-                print("Enter E(X), standard deviation, and p':")
-                e, sd, pp = get_values(float, float, float)
+                print("Enter E(X), V(X), and p':")
+                e, var, pp = get_values(float, float, float)
+                sd = sqrt(var)
                 result = stats.norm.ppf(pp,e,sd)
                 print("P(X < ", result, ") = ", pp, sep="")
                 return
