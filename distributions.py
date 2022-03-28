@@ -2,18 +2,6 @@ from math import sqrt
 import sys
 from scipy import stats
 
-descriptions = ["\t1) Binomial --> number of successes in n trials",
-    "\t2) Negative Binomial --> number of trials to produce n successes",
-    "\t3) Poisson --> number of successes occurring in a time period",
-    "\t4) Exponential",
-    "\t5) Normal",
-    "\t6) Chi-Square",
-    "\t7) t",
-    "\t8) F",
-    "\t9) Uniform Distribution",
-    "\t10) Normal Approximation to the Binomial Distribution",
-    "\t11) Exit"]
-
 def quit():
     print("Exiting program...")
     sys.exit()
@@ -409,6 +397,20 @@ def normal_approximation_for_binomial():
         except Exception as e:
             print(e)
 
+descriptions = ["\t1) Binomial --> number of successes in n trials",
+    "\t2) Negative Binomial --> number of trials to produce n successes",
+    "\t3) Poisson --> number of successes occurring in a time period",
+    "\t4) Exponential",
+    "\t5) Normal",
+    "\t6) Chi-Square",
+    "\t7) t",
+    "\t8) F",
+    "\t9) Uniform Distribution",
+    "\t10) Normal Approximation to the Binomial Distribution",
+    "\t11) Exit"]
+
+functions = [None, binomial, negative_binomial, poisson, exponential, normal, chi_square, t, F, uniform, normal_approximation_for_binomial]
+
 while True:
     print("\nSelect the distribution:")
     for description in descriptions:
@@ -417,5 +419,4 @@ while True:
     choice = get_choice(len(descriptions))
     if choice == len(descriptions):
         break
-    functions = [None, binomial, negative_binomial, poisson, exponential, normal, chi_square, t, F, uniform, normal_approximation_for_binomial]
     functions[choice]()
