@@ -1,3 +1,4 @@
+from math import sqrt
 import sys
 from scipy import stats
 
@@ -10,7 +11,8 @@ descriptions = ["\t1) Binomial --> number of successes in n trials",
     "\t7) t",
     "\t8) F",
     "\t9) Uniform Distribution",
-    "\t10) Exit"]
+    "\t10) Normal Approximation to the Binomial Distribution",
+    "\t11) Exit"]
 
 def quit():
     print("Exiting program...")
@@ -383,6 +385,28 @@ def uniform():
         except Exception as e:
             print(e)
 
+def normal_approximation_for_binomial():
+    print("X ~ B(n, p) where\n\tX = number of successes\n\tn = number of trials\n\tp = probability of success")
+    print("approximated using normal distribution with continuity correction included")
+    while True:
+        try:
+            print("Enter n, p and k:")
+            n, p, k = get_values(int, float, int)
+            if n*p < 5 or n*(1-p) < 5:
+                print("WARNING: np or n(1-p) too small, normal approximation cannot be used.")
+                return
+            e = n*p
+            sd = sqrt(n*p*(1-p))
+            result = stats.norm.cdf(k+0.5,e,sd) - stats.norm.cdf(0,e,sd)
+            print("P(X <= ", k, ") = ", result, sep="")
+            result = stats.norm.pdf(k+0.5,e,sd) - stats.norm.pdf(k-0.5,e,sd)
+            print("P(X = ", k, ") = ", result, sep="")
+            result = stats.norm.cdf(n,e,sd) - stats.norm.cdf(k+0.5,e,sd)
+            print("P(X > ", k, ") = ", result, sep="")
+            return
+        except Exception as e:
+            print(e)
+
 while True:
     print("\nSelect the distribution:")
     for description in descriptions:
@@ -391,5 +415,5 @@ while True:
     choice = get_choice(len(descriptions))
     if choice == len(descriptions):
         break
-    functions = [None, binomial, negative_binomial, poisson, exponential, normal, chi_square, t, F, uniform]
+    functions = [None, binomial, negative_binomial, poisson, exponential, normal, chi_square, t, F, uniform, normal_approximation_for_binomial]
     functions[choice]()
