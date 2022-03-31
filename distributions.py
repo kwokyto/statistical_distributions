@@ -329,7 +329,7 @@ def t():
                 print(e)
 
 def F():
-    print("X ~ F(n) where\n\tn = degrees of freedom")
+    print("X ~ F(n1, n2) where\n\tn1, n2 = degrees of freedom")
     print("Select the probability:")
     print("1) P(X <= k) or P(X = k) or P(X > k)")
     print("2) P(X <= x) = p' or P(X >= x) = p'")
@@ -338,13 +338,13 @@ def F():
     if choice == 1:
         while True:
             try:
-                print("Enter n and k:")
-                n, k = get_values(int, float)
-                result = stats.f.cdf(k,n)
+                print("Enter n1, n2, and k:")
+                n1, n2, k = get_values(int, int, float)
+                result = stats.f.cdf(k,n1,n2)
                 print("P(X <= ", k, ") = ", result, sep="")
-                result = stats.f.pmf(k,n)
+                result = stats.f.pdf(k,n1,n2)
                 print("P(X = ", k, ") = ", result, sep="")
-                result = 1 - stats.f.cdf(k,n)
+                result = 1 - stats.f.cdf(k,n1,n2)
                 print("P(X > ", k, ") = ", result, sep="")
                 return
             except Exception as e:
@@ -352,11 +352,11 @@ def F():
     if choice == 2:
         while True:
             try:
-                print("Enter n and p':")
-                n, pp = get_values(int, float)
-                result = stats.f.ppf(pp,n)
+                print("Enter n1, n2, and p':")
+                n1, n2, pp = get_values(int, int, float)
+                result = stats.f.ppf(pp,n1,n2)
                 print("P(X <= ", result, ") = ", pp, sep="")
-                result = stats.f.ppf(1-pp,n)
+                result = stats.f.ppf(1-pp,n1,n2)
                 print("P(X >= ", result, ") = ", pp, sep="")
                 return
             except Exception as e:
