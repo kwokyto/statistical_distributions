@@ -308,7 +308,7 @@ def t():
                 n, k = get_values(int, float)
                 result = stats.t.cdf(k,n)
                 print("P(X <= ", k, ") = ", result, sep="")
-                result = stats.t.pmf(k,n)
+                result = stats.t.pdf(k,n)
                 print("P(X = ", k, ") = ", result, sep="")
                 result = 1 - stats.t.cdf(k,n)
                 print("P(X > ", k, ") = ", result, sep="")
