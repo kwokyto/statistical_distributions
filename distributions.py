@@ -274,7 +274,7 @@ def chi_square():
                 n, k = get_values(int, float)
                 result = stats.chi2.cdf(k,n)
                 print("P(X <= ", k, ") = ", result, sep="")
-                result = stats.chi2.pmf(k,n)
+                result = stats.chi2.pdf(k,n)
                 print("P(X = ", k, ") = ", result, sep="")
                 result = 1 - stats.chi2.cdf(k,n)
                 print("P(X > ", k, ") = ", result, sep="")
