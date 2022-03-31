@@ -220,7 +220,7 @@ def normal():
     print("Select the probability:")
     print("1) P(X <= k) or P(X = k) or P(X > k)")
     print("2) P(X <= x) = p'")
-    print("3) P(Z >= z) = p'")
+    print("3) P(Z <= z) = p'")
     
     choice = get_choice(3)
     if choice == 1:
@@ -245,7 +245,7 @@ def normal():
                 e, var, pp = get_values(float, float, float)
                 sd = sqrt(var)
                 result = stats.norm.ppf(pp,e,sd)
-                print("P(X < ", result, ") = ", pp, sep="")
+                print("P(X <= ", result, ") = ", pp, sep="")
                 return
             except Exception as e:
                 print(e)
@@ -255,7 +255,7 @@ def normal():
                 print("Enter p':")
                 pp = get_values(float)
                 result = stats.norm.ppf(pp,0,1)
-                print("P(Z >= ", result, ") = ", pp, sep="")
+                print("P(Z <= ", result, ") = ", pp, sep="")
                 return
             except Exception as e:
                 print(e)
