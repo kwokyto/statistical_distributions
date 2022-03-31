@@ -246,6 +246,8 @@ def normal():
                 sd = sqrt(var)
                 result = stats.norm.ppf(pp,e,sd)
                 print("P(X <= ", result, ") = ", pp, sep="")
+                result = stats.norm.ppf(1-pp,e,sd)
+                print("P(X >= ", result, ") = ", pp, sep="")
                 return
             except Exception as e:
                 print(e)
@@ -256,6 +258,8 @@ def normal():
                 pp = get_values(float)
                 result = stats.norm.ppf(pp,0,1)
                 print("P(Z <= ", result, ") = ", pp, sep="")
+                result = stats.norm.ppf(1-pp,0,1)
+                print("P(Z >= ", result, ") = ", pp, sep="")
                 return
             except Exception as e:
                 print(e)
