@@ -401,6 +401,31 @@ def normal_approximation_for_binomial():
         except Exception as e:
             print(e)
 
+def data():
+    print("Select the data type:")
+    print("1) Population")
+    print("2) Sample")
+
+    choice = get_choice(2)
+    while True:
+        try:
+            print("Enter data values:")
+            values = input().split()
+            values = [float(value) for value in values]
+            mean = sum(values) / len(values)
+            sum_of_squares = 0
+            for value in values:
+                sum_of_squares += (value - mean)**2
+            if choice == 1:
+                variance = sum_of_squares / len(values)
+            if choice == 2:
+                variance = sum_of_squares / (len(values) - 1)
+            print("Mean:", mean)
+            print("Variance:", variance)
+            return
+        except Exception as e:
+            print(e)
+
 descriptions = ["\t1) Binomial --> number of successes in n trials",
     "\t2) Negative Binomial --> number of trials to produce n successes",
     "\t3) Poisson --> number of successes occurring in a time period",
@@ -411,9 +436,10 @@ descriptions = ["\t1) Binomial --> number of successes in n trials",
     "\t8) F",
     "\t9) Uniform Distribution",
     "\t10) Normal Approximation to the Binomial Distribution",
-    "\t11) Exit"]
+    "\t11) Mean and Variance from Data",
+    "\t12) Exit"]
 
-functions = [None, binomial, negative_binomial, poisson, exponential, normal, chi_square, t, F, uniform, normal_approximation_for_binomial]
+functions = [None, binomial, negative_binomial, poisson, exponential, normal, chi_square, t, F, uniform, normal_approximation_for_binomial, data]
 
 while True:
     print("\nSelect the distribution:")
