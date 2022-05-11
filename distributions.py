@@ -36,7 +36,7 @@ def get_values(*args):
             for i in range(len(values)):
                 value = args[i](values[i])
                 results.append(value)
-            return
+            return results
         except Exception as e:
             print(e)
 
@@ -255,7 +255,7 @@ def normal():
         while True:
             try:
                 print("Enter p':")
-                pp = get_values(float)
+                pp = get_values(float)[0]
                 result = stats.norm.ppf(pp,0,1)
                 print("P(Z <= ", result, ") = ", pp, sep="")
                 result = stats.norm.ppf(1-pp,0,1)
